@@ -1,0 +1,146 @@
+function ArrayUtils.new 0
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push argument 0
+call Array.new 1
+pop this 1
+push pointer 0
+return
+function ArrayUtils.fillSequential 1
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+label WHILE_EXP_55
+push local 0
+push this 0
+lt
+not
+if-goto WHILE_END_55
+push local 0
+push this 1
+add
+push argument 1
+push local 0
+add
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP_55
+label WHILE_END_55
+push constant 0
+return
+function ArrayUtils.sum 2
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+push constant 0
+pop local 1
+label WHILE_EXP_105
+push local 0
+push this 0
+lt
+not
+if-goto WHILE_END_105
+push local 1
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+add
+pop local 1
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP_105
+label WHILE_END_105
+push local 1
+return
+function ArrayUtils.print 1
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+label WHILE_EXP_149
+push local 0
+push this 0
+lt
+not
+if-goto WHILE_END_149
+push local 0
+push this 1
+add
+pop pointer 1
+push that 0
+call Output.printInt 1
+pop temp 0
+push constant 17
+call String.new 1
+push constant 60
+call String.appendChar 2
+push constant 47
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 103
+call String.appendChar 2
+push constant 67
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 62
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP_149
+label WHILE_END_149
+call Output.println 0
+pop temp 0
+push constant 0
+return
+function ArrayUtils.dispose 0
+push argument 0
+pop pointer 0
+push this 1
+call Array.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return

@@ -1,0 +1,60 @@
+// A simple ArrayUtils class in Jack (Nand2Tetris)
+class ArrayUtils {
+
+    // Field variables (instance variables)
+    field int size;
+    field Array data;
+
+    /** Constructs a new ArrayUtils instance with a given size. */
+    constructor ArrayUtils new(int length) {
+        let size = length;
+        let data = Array.new(length);
+        return this;
+    }
+
+    /** Fills the array with sequential values starting at 'startVal'. */
+    method void fillSequential(int startVal) {
+        var int i;
+        let i = 0;
+        
+        while (i < size) {
+            let data[i] = startVal + i;
+            let i = i + 1;
+        }
+        return;
+    }
+
+    /** Calculates and returns the sum of all elements in the array. */
+    method int sum() {
+        var int i, total;
+        let i = 0;
+        let total = 0;
+
+        while (i < size) {
+            let total = total + data[i];
+            let i = i + 1;
+        }
+        return total;
+    }
+
+    /** Prints the array elements to the screen. */
+    method void print() {
+        var int i;
+        let i = 0;
+
+        while (i < size) {
+            do Output.printInt(data[i]);
+            do Output.printString(" ");
+            let i = i + 1;
+        }
+        do Output.println();
+        return;
+    }
+
+    /** Deallocates the object's memory. */
+    method void dispose() {
+        do data.dispose(); // Free the internal array
+        do Memory.deAlloc(this); // Free the object itself
+        return;
+    }
+}

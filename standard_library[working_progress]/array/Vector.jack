@@ -1,0 +1,71 @@
+class Vector {
+  field int len;
+  field int body;
+
+  constructor Vector new(int size){
+    if (size <= 0 ){
+      return 0;
+    }
+    let this.len = size;
+    let this.body = Memory.alloc(size);
+    return this;
+  }
+
+  method int get(int index){
+    if ( (index >= 0) & (index < len)) {
+      return body[index];
+    } else {
+      return 0;
+    }
+  }
+
+  method void add(int value, int index) {
+    var Array ptr;
+    var int iter;
+    if (index >= len){
+      let iter = len - 1;
+      let len = len + (index*5) /4 + 1;
+      let ptr = Memory.alloc(len);
+      while (iter >= 0) {
+        let ptr[iter] = this.body[iter];
+        let iter = iter - 1;
+      }
+      do Memory.deAlloc(this.body);
+      let this.body = ptr;
+    } 
+    if (index >= 0) {
+      let this.body[index] = value;
+    }
+    return;
+  }
+
+  method void resize(int size){
+    var Array ptr;
+    var int iter;
+
+    if (size > 0) {
+      
+      if (size > len) {
+        let iter = len - 1;
+      } else {
+        let iter = size - 1;
+      }
+      
+      let len = size;
+      let ptr = Memory.alloc(len);
+      while (iter >= 0) {
+        let ptr[iter] = this.body[iter];
+        let iter = iter - 1;
+      }
+      do Memory.deAlloc(this.body);
+      let this.body = ptr;
+    }
+    return;
+  }
+
+  method void destroy(){
+    do Memory.deAlloc(this.body);
+    do Memory.deAlloc(this);
+    return;
+  }
+}

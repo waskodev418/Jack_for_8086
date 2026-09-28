@@ -1,0 +1,39 @@
+class String {
+  
+  field Vector text;
+  field int len;
+
+  constructor String new(int size){
+    let len = 0;
+    let this.text = Vector.new(size);
+    return this;
+  }
+
+  method void append(char el){
+    do text.add(el, this.len);
+    let this.len = this.len + 1;
+    return;
+  }
+
+  method char get(int index){
+    return this.text.get(index);
+  }
+
+  method void put(char value, int index){
+    if (index >= len){
+      return;
+    }
+    do this.text.add(value, index);
+    return;
+  }
+
+  method int length(){
+    return this.len;
+  }
+
+  method void destroy(){
+    do this.text.destroy();
+    do Memory.deAlloc(this);
+    return;
+  }
+}
